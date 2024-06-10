@@ -2,11 +2,11 @@
 import express, { Request, Response } from 'express';
 import { testDataBaseWithSequelice } from './config/db.config';
 import { checkEnvironments, envConfig } from './config/env.config';
-import { isLoggedGuard } from './guards/is-logged.guard';
 import { Env } from './models/enums/env.enum';
 import { authRouter } from './router/auth.router';
+import { commonRouter } from './router/common.router';
 import { localsSetLogged } from './services/locals.service';
-import { initSession, sessionGetLogged } from './services/session.service';
+import { initSession, sessionGetIsLogged } from './services/session.service';
 import { router } from './utils/router.util';
 
 const methodOverride = require('method-override');
@@ -25,21 +25,13 @@ app.use(methodOverride('_method'));
 // * SESSION
 app.use(initSession());
 app.use((req, res, next) => {
-    localsSetLogged(res, sessionGetLogged(req));
+    localsSetLogged(res, sessionGetIsLogged(req));
     next();
 });
 
-// * CON ROUTER
+
 app.use(router('/auth'), authRouter);
-
-// * SIN ROUTER
-app.use(router('/pagina-publica'), async (req: Request, res: Response) => {
-    return res.status(200).send({ msg: 'Página de pública' });
-});
-
-app.use(router('/pagina-privada'), isLoggedGuard, async (req: Request, res: Response) => {
-    return res.status(200).send({ msg: 'Página de privada' });
-});
+app.use(router('/'), commonRouter);
 
 app.use(async (req: Request, res: Response) => {
     return res.status(404).send({ msg: 'Página no encontrada' });

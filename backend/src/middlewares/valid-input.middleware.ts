@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { validationResult } from "express-validator";
 
 export const validInputMiddleware = (req: Request, res: Response, next: any): void => {
+
     const errors = validationResult(req);
 
     if (errors.isEmpty()) {

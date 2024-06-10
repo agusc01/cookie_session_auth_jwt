@@ -29,6 +29,7 @@
 		"express": "^4.19.2",
 		"express-session": "^1.18.0",
 		"express-validator": "^7.1.0",
+		"jose": "^5.4.0",
 		"method-override": "^3.0.0",
 		"mysql2": "^3.9.7",
 		"sequelize": "^6.37.3",
