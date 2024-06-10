@@ -1,0 +1,268 @@
+{
+	"info": {
+		"_postman_id": "ec72ede3-43f8-42fc-bc0d-4e79cc8d161e",
+		"name": "cookie_session_auth_jwt",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23206526"
+	},
+	"item": [
+		{
+			"name": "registrarse",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"test@test.com\",\r\n    \"password\": \"123123\",\r\n    \"passwordAgain\": \"123123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4141/auth/registrarse",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4141",
+					"path": [
+						"auth",
+						"registrarse"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "iniciar sesion",
+			"request": {
+				"auth": {
+					"type": "jwt",
+					"jwt": [
+						{
+							"key": "secret",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZmE0NWI1ZjVhOGExYzE4ZjBjMDZkMCIsImlhdCI6MTcxMDkwMjE0MSwiZXhwIjoxNzEwOTIzNzQxfQ.IExB2BST__gJVRsix2qyr4kWXL4ggWBoHH770oOGNCo",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "queryParam",
+							"type": "string"
+						},
+						{
+							"key": "payload",
+							"value": "{}",
+							"type": "string"
+						},
+						{
+							"key": "algorithm",
+							"value": "HS256",
+							"type": "string"
+						},
+						{
+							"key": "isSecretBase64Encoded",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "queryParamKey",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "header",
+							"value": "{}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"test@test.com\",\r\n    \"password\": \"123123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4141/auth/iniciar-sesion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4141",
+					"path": [
+						"auth",
+						"iniciar-sesion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cerrar sesion",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4141/auth/cerrar-sesion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4141",
+					"path": [
+						"auth",
+						"cerrar-sesion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pagina publica",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4141/pagina-publica",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4141",
+					"path": [
+						"pagina-publica"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pagina privada",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYmM0YWNiZDAtZjNiNi00MzU2LThhMDktMGFhNDE1NjkxNGQ2IiwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzE3OTg4Mzc2LCJleHAiOjE3MTc5ODk0MzZ9.kk5gj_FBofS0Qt1t18pDMdVfyYe9dFmAdaAYD8YSCfs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4141/pagina-privada",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4141",
+					"path": [
+						"pagina-privada"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pagina no encontrada",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4141/aklsjdflkwejrkljsmdf",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4141",
+					"path": [
+						"aklsjdflkwejrkljsmdf"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
