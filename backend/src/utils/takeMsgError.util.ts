@@ -12,7 +12,7 @@ const sequelizeMsgError = (error: Error): string => {
 
 const basicMsgError = (error: string): string => {
     return error
-        .replaceAll('"', " ")
+        ?.replaceAll('"', " ")
         .replaceAll('\\', " ")
         .replaceAll("'", " ");
 };

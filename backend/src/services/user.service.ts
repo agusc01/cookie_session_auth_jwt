@@ -8,7 +8,6 @@ import { takeMsgError } from '../utils/takeMsgError.util';
 require('dotenv').config();
 
 const msgErrorLoginUser = envConfig(Env.DB_MSG_ERROR_LOGIN_USER);
-const msgErrorRead = envConfig(Env.DB_MSG_ERROR_READ);
 const msgErrorCreate = envConfig(Env.DB_MSG_ERROR_CREATE);
 
 export const getOneUserByEmail = async (email: string): Promise<IResponseDb<IUser | string>> => {
@@ -17,7 +16,7 @@ export const getOneUserByEmail = async (email: string): Promise<IResponseDb<IUse
         if (!user) { throw new Error(`${msgErrorLoginUser}`); }
         return { isError: false, data: user };
     } catch (e: any) {
-        return { isError: true, data: `${msgErrorRead} ${takeMsgError(e)}.` };
+        return { isError: true, data: takeMsgError(e) };
     } finally { }
 };
 
@@ -27,7 +26,7 @@ export const getOneUserByUUID = async (uuid: string): Promise<IResponseDb<IUser 
         if (!user) { throw new Error(`${msgErrorLoginUser}`); }
         return { isError: false, data: user };
     } catch (e: any) {
-        return { isError: true, data: `${msgErrorRead} ${takeMsgError(e)}.` };
+        return { isError: true, data: takeMsgError(e) };
     } finally { }
 };
 
